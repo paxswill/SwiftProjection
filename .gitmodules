@@ -1,3 +1,6 @@
 [submodule "proj-src"]
 	path = proj-src
 	url = https://github.com/OSGeo/proj.4.git
+[submodule "proj-datumgrid"]
+	path = proj-datumgrid
+	url = https://github.com/OSGeo/proj-datumgrid.git
