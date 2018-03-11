@@ -46,8 +46,9 @@ This library provides a way to use the PROJ projection library easily in Swift.
     'proj-src/src/projects.h',
     'proj-src/src/aasincos.c', 'proj-src/src/adjlon.c',
     'proj-src/src/bch2bps.c', 'proj-src/src/bchgen.c',
-    'proj-src/src/biveval.c', 'proj-src/src/dmstor.c',
+    'proj-src/src/dmstor.c', 'proj-src/src/rtodms.c',
     'proj-src/src/mk_cheby.c', 'proj-src/src/vector1.c',
+    'proj-src/src/biveval.c',
     'proj-src/src/nad_*', 'proj-src/src/emess.{h,c}',
     'proj-src/src/geocent.{h,c}', 'proj-src/src/geodesic.c',
   ]
