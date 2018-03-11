@@ -32,7 +32,7 @@ This library provides a way to use the PROJ projection library easily in Swift.
   s.osx.deployment_target = '10.8'
 
   s.compiler_flags = [
-    "-DPROJ_LIB=''", '-DMUTEX_pthread',
+    '-DMUTEX_pthread',
   ]
 
   s.module_name = 'Proj'
