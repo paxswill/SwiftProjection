@@ -59,12 +59,25 @@ This library provides a way to use the PROJ projection library easily in Swift.
     'proj-src/src/projects.h', 'proj-src/src/proj_internal.h'
   ]
   s.resource_bundles = {
-    'ProjData' => ['proj-src/nad/*', 'proj-datumgrid/*']
+    'ProjData' => [
+      'proj-src/nad/*',
+      # If a plain wildcard is used, everything is included, including
+      # subdirectories. So instead each file is listed specifically
+      'proj-datumgrid/alaska', 'proj-datumgrid/BETA2007.gsb',
+      'proj-datumgrid/conus', 'proj-datumgrid/egm96_15.gtx',
+      'proj-datumgrid/FL', 'proj-datumgrid/hawaii',
+      'proj-datumgrid/MD', 'proj-datumgrid/ntf_r93.gsb',
+      'proj-datumgrid/ntv1_can.dat', 'proj-datumgrid/null',
+      'proj-datumgrid/nzgd2kgrid0005.gsb', 'proj-datumgrid/prvi',
+      'proj-datumgrid/stgeorge', 'proj-datumgrid/stlrnc ',
+      'proj-datumgrid/stpaul', 'proj-datumgrid/TN', 'proj-datumgrid/WI',
+      'proj-datumgrid/WO',
+    ]
   }
   s.exclude_files = [
     '**/*.in', '**/*.am', '**/CMakeLists.txt',
-    'proj-src/**/README', 'proj-src/nad/test*', 'proj-src/nad/*.dist*', 
-    'proj-datumgrids/HOWTORELEASE', 'proj-datumgrids/README-DATUMGRID',
+    'proj-src/**/README',
+    'proj-src/nad/test*', 'proj-src/nad/*.dist*', 'proj-src/nad/*.lla',
   ]
 
   s.libraries = 'pthread'
