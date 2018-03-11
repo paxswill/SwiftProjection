@@ -34,6 +34,9 @@ This library provides a way to use the PROJ projection library easily in Swift.
   s.compiler_flags = [
     '-DMUTEX_pthread',
   ]
+  s.pod_target_xcconfig = {
+    'HEADER_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/proj-src/src/"'
+  }
 
   s.module_name = 'Proj'
   s.source_files = [
