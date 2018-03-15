@@ -47,11 +47,11 @@ class CoordinatesSpec: QuickSpec {
                 beforeEach {
                     coord = ProjectionCoordinate(latitude: 44, longitude: -130.5, altitude: 30, time: 0)
                 }
-                it("has latitude as v") {
-                    expect(coord.v).to(equal(44))
+                it("has latitude as v in radians") {
+                    expect(coord.v) ≈ 0.767945 ± 0.00001
                 }
-                it("has longitude as u") {
-                    expect(coord.u).to(equal(-130.5))
+                it("has longitude as u in radians") {
+                    expect(coord.u) ≈ -2.2776547 ± 0.00001
                 }
             }
             it("returns itself for getCoordinate") {
