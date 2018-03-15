@@ -36,7 +36,10 @@ This library provides a way to use the PROJ projection library easily in Swift.
     '-DMUTEX_pthread',
   ]
   s.pod_target_xcconfig = {
-    'HEADER_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/proj-src/src/"'
+    'HEADER_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/proj-src/src/"',
+    # the upstream PROJ source has s single 'prototype' that isn't really a
+    # prototype in a public header file.
+    'OTHER_CFLAGS' => '-Wno-strict-prototypes -Wno-documentation',
   }
 
   s.module_name = 'Proj'
