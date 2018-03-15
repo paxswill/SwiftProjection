@@ -88,4 +88,13 @@ This library provides a way to use the PROJ projection library easily in Swift.
 
   s.libraries = 'pthread'
   s.dependency 'Threadly', '~> 2.0.1'
+  # A non-ideal workaround for CocoaPods#7498, can be removed once CocoaPods 1.5.0 is released
+  s.dependency 'Quick', '~> 1.2.0'
+  s.dependency 'Nimble', '~> 7.0.2'
+
+  s.test_spec 'Tests' do |t|
+    t.source_files = 'Proj.Swift/Tests/*'
+    t.dependency 'Quick', '~> 1.2.0'
+    t.dependency 'Nimble', '~> 7.0.2'
+  end
 end
