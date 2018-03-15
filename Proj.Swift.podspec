@@ -29,7 +29,8 @@ This library provides a way to use the PROJ projection library easily in Swift.
                          :submodules => true }
 
   s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.8'
+  s.osx.deployment_target = '10.10'
+  s.swift_version = '4.1'
 
   s.compiler_flags = [
     '-DMUTEX_pthread',
