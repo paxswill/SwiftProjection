@@ -28,7 +28,9 @@ public struct ProjectionCoordinate: ConvertibleCoordinate, Equatable {
     }
 
     public init(latitude: Double, longitude: Double, altitude: Double = 0.0, time: Double = 0.0) {
-        self.init(u: longitude, v: latitude, w: altitude, t: time)
+        let latRad = proj_torad(latitude)
+        let lonRad = proj_torad(longitude)
+        self.init(u: lonRad, v: latRad, w: altitude, t: time)
     }
 
     internal init(_ projCoordinate: PJ_COORD) {
