@@ -41,7 +41,7 @@ This library provides a way to use the PROJ projection library easily in Swift.
 
   s.module_name = 'Proj'
   s.source_files = [
-    'Proj.Swift/Classes/**/*',
+    'Proj.Swift/Classes/*',
     'proj-src/src/pj_*.{h,c}', 'proj-src/src/PJ_*.{h,c}',
     'proj-src/src/proj_*.{h,c}', 'proj-src/src/proj.h',
     'proj-src/src/projects.h',
@@ -58,7 +58,8 @@ This library provides a way to use the PROJ projection library easily in Swift.
     'proj-src/src/proj_api.h'
   ]
   s.private_header_files = [
-    'proj-src/src/projects.h', 'proj-src/src/proj_internal.h'
+    'proj-src/src/projects.h',
+    'proj-src/src/proj_internal.h',
   ]
   s.resource_bundles = {
     'ProjData' => [
