@@ -60,6 +60,45 @@ public class Projection: CustomDebugStringConvertible  {
         return definition
     }
 
+    internal var isPipeline: Bool {
+        return id == "pipeline"
+    }
+
+    private var pipeline: [String] {
+        guard isPipeline else {
+            return [definition]
+        }
+        let words = definition.split(separator: " ")
+        var steps: [String] = []
+        var currentStep = ""
+        for word in words {
+            if word == "step" {
+                // The last character is a space, trim it off
+                currentStep = String(currentStep.dropLast())
+                steps.append(currentStep)
+                currentStep = ""
+            } else {
+                currentStep.append(contentsOf: word)
+                currentStep.append(" ")
+            }
+        }
+        // Append the last step
+        currentStep = String(currentStep.dropLast())
+        steps.append(currentStep)
+        return steps
+    }
+
+    internal var pipelineGlobals: String {
+        return pipeline[0]
+    }
+
+    internal var pipelineSteps: [String] {
+        guard isPipeline else {
+            return []
+        }
+        return Array(pipeline.suffix(from: 1))
+    }
+
     private init(projString: String, defaultForward: Bool) {
         projection = proj_create(projContext.inner.value.context, projString)
         self.defaultDirection = defaultForward ? PJ_FWD : PJ_INV
@@ -92,6 +131,29 @@ public class Projection: CustomDebugStringConvertible  {
 
     public func transform(_ convertibleCoordinate: ConvertibleCoordinate) -> ProjectionCoordinate {
         return self.transform(convertibleCoordinate, direction: defaultDirection)
+    }
+
+    public func asPipeline() -> Projection {
+        if isPipeline {
+            return self
+        }
+        var pipelineDefinition = "proj=pipeline step \(definition)"
+        if defaultDirection == PJ_INV {
+            pipelineDefinition.append(" inv")
+        }
+        return Projection(projString: pipelineDefinition)
+    }
+
+    public func appendStep(projString: String) -> Projection {
+        guard isPipeline else {
+            return asPipeline().appendStep(projString: projString)
+        }
+        let newDefinition = "\(definition) step \(projString)"
+        return Projection(projString: newDefinition)
+    }
+
+    public func appendStep(projection: Projection) -> Projection {
+        return self.appendStep(projString: projection.definition)
     }
 }
 

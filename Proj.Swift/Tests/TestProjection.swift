@@ -63,6 +63,69 @@ class ProjectionSpec: QuickSpec {
                 }
                 // TODO continue here
             }
+            context("can be a pipeline") {
+                let plainPJ = Projection(projString: "+proj=merc +lat_ts=56.5 ellps=GRS80")
+                let pipelinePJ = Projection(projString: "+proj=pipeline +step +proj=merc +lat_ts=56.5 + ellps=GRS80")
+                let complexPipeline = Projection(projString: "+proj=pipeline +ellps=GRS80 +step +proj=merc +step +proj=axisswap +order=2,1")
+                it("can be asked if it's a pipeline") {
+                    expect(plainPJ.isPipeline) == false
+                    expect(pipelinePJ.isPipeline) == true
+                }
+                context("can be converted form a plain projection") {
+                    it("can be ca forward transform") {
+                        let plainAsPipeline = plainPJ.asPipeline()
+                        expect(plainAsPipeline.isPipeline) == true
+                        expect(plainAsPipeline.pipelineSteps.count) == 1
+                        expect(plainAsPipeline.pipelineSteps[0]) == plainPJ.definition
+                    }
+                    it("can be an inverse transform") {
+                        let plainInversePipeline = plainPJ.inverse!.asPipeline()
+                        expect(plainInversePipeline.isPipeline) == true
+                        expect(plainInversePipeline.pipelineSteps.count) == 1
+                        expect(plainInversePipeline.pipelineSteps[0]) == "\(plainPJ.definition) inv"
+                    }
+                }
+                it("doesn't convert existing pipelines") {
+                    expect(pipelinePJ.asPipeline()) === pipelinePJ
+                }
+                it("can enumerate the steps") {
+                    expect(complexPipeline.pipelineSteps.count) == 2
+                    expect(complexPipeline.pipelineSteps[0]) == "proj=merc"
+                    expect(complexPipeline.pipelineSteps[1]) == "proj=axisswap order=2,1"
+                }
+                it("can show global settings") {
+                    expect(complexPipeline.pipelineGlobals) == "proj=pipeline ellps=GRS80"
+                }
+                context("can build pipelines incrementally") {
+                    func testAppendString(_ pj: Projection) {
+                        let newPipeline = pj.appendStep(projString: "proj=axisswap order=2,1")
+                        expect(newPipeline.pipelineSteps[0]) == "proj=merc lat_ts=56.5 ellps=GRS80"
+                        expect(newPipeline.pipelineSteps[1]) == "proj=axisswap order=2,1"
+                    }
+                    func testAppendProjection(_ pj: Projection) {
+                        let newPipeline = pj.appendStep(
+                            projection: Projection(projString: "proj=axisswap order=2,1 no_defs"))
+                        expect(newPipeline.pipelineSteps[0]) == "proj=merc lat_ts=56.5 ellps=GRS80"
+                        expect(newPipeline.pipelineSteps[1]) == "proj=axisswap order=2,1 no_defs"
+                    }
+                    context("can add steps to existing pipelines") {
+                        it("can add steps as strings") {
+                            testAppendString(pipelinePJ)
+                        }
+                        it("can add steps from projections") {
+                            testAppendProjection(pipelinePJ)
+                        }
+                    }
+                    context("can add steps to plain projections") {
+                        it("can add steps as strings") {
+                            testAppendString(plainPJ)
+                        }
+                        it("can add steps from projections") {
+                            testAppendProjection(plainPJ)
+                        }
+                    }
+                }
+            }
         }
     }
 }
