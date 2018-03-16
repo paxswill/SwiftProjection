@@ -58,14 +58,15 @@ This library provides a way to use the PROJ projection library easily in Swift.
   ]
   s.public_header_files = [
     'proj-src/src/proj.h',
-    'proj-src/src/proj_api.h'
+    'proj-src/src/proj_api.h',
+    'Proj.Swift/Classes/bundle-reader.h',
   ]
   s.private_header_files = [
     'proj-src/src/projects.h',
     'proj-src/src/proj_internal.h',
   ]
   s.resource_bundles = {
-    'ProjData' => [
+    'proj-data' => [
       'proj-src/nad/*',
       # If a plain wildcard is used, everything is included, including
       # subdirectories. So instead each file is listed specifically
