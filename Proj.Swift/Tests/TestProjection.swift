@@ -52,16 +52,6 @@ class ProjectionSpec: QuickSpec {
                     // The definition is the same, just the direction is different
                     expect(pj.definition) == pj.inverse!.definition
                 }
-                it("can use the gt operator to transform") {
-                    let output = geodetic > pj
-                    expectProjected(output)
-                }
-                xit("can use the gt and neg operators to do an inverse transform") {
-                    // TODO: Continue here, implement negation operator
-                    let output = projected > (-pj)!
-                    expectGeodetic(output)
-                }
-                // TODO continue here
             }
             context("can be a pipeline") {
                 let plainPJ = Projection(projString: "+proj=merc +lat_ts=56.5 ellps=GRS80")

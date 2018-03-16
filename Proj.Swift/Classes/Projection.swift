@@ -156,19 +156,3 @@ public class Projection: CustomDebugStringConvertible  {
         return self.appendStep(projString: projection.definition)
     }
 }
-
-public extension Projection {
-    public static prefix func - (startingProjection: Projection) -> Projection? {
-        // TODO: Implement as returning a new projection, but as an inverse
-        // throw if the projection is not invertable
-        return startingProjection.inverse
-    }
-
-    public static func > (coordinate: ConvertibleCoordinate, projection: Projection) -> ProjectionCoordinate {
-        return projection.transform(coordinate)
-    }
-
-    public static func > (left: AnyIterator<ConvertibleCoordinate>, right: Projection) -> [ProjectionCoordinate] {
-        return left.map { $0 > right }
-    }
-}
