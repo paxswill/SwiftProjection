@@ -14,14 +14,6 @@ public class Projection: CustomDebugStringConvertible  {
     private let defaultDirection: PJ_DIRECTION
     private var _inverse: Projection? = nil
 
-    private var info: PJ_PROJ_INFO {
-        if _info == nil {
-            pj_set_ctx(projection, projContext.inner.value.context)
-            _info = proj_pj_info(projection)
-        }
-        return _info!
-    }
-
     public var inverse: Projection? {
         guard hasInverse else {
             return nil
@@ -31,6 +23,16 @@ public class Projection: CustomDebugStringConvertible  {
             _inverse = Projection(projection: self, defaultForward: !isForward)
         }
         return _inverse
+    }
+
+    // MARK: - Projection Info
+
+    private var info: PJ_PROJ_INFO {
+        if _info == nil {
+            pj_set_ctx(projection, projContext.inner.value.context)
+            _info = proj_pj_info(projection)
+        }
+        return _info!
     }
 
     public var id: String {
@@ -56,9 +58,13 @@ public class Projection: CustomDebugStringConvertible  {
         return info.accuracy
     }
 
+    // MARK: - Debugging and Errors
+
     public var debugDescription: String {
         return definition
     }
+
+    // MARK: - Pipeline introspection
 
     internal var isPipeline: Bool {
         return id == "pipeline"
