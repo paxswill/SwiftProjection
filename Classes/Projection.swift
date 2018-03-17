@@ -35,6 +35,7 @@ public class Projection: CustomDebugStringConvertible  {
     private var info: PJ_PROJ_INFO {
         if _info == nil {
             pj_set_ctx(projection, projContext.inner.value.context)
+            proj_errno_reset(projection)
             _info = proj_pj_info(projection)
         }
         return _info!
@@ -156,6 +157,7 @@ public class Projection: CustomDebugStringConvertible  {
     private func transform(_ convertibleCoordinate: ConvertibleCoordinate, direction: PJ_DIRECTION) throws -> ProjectionCoordinate {
         // Set the context for the PJ at the beginning of every function in case we're running in a different thread
         pj_set_ctx(projection, projContext.inner.value.context)
+        proj_errno_reset(projection)
         let coordinate = convertibleCoordinate.getCoordinate()
         let projCoordinate = coordinate.getProjCoordinate()
         let transformed = proj_trans(projection, direction, projCoordinate)
