@@ -71,7 +71,7 @@ class ProjectionSpec: QuickSpec {
                     expect(pj.definition) == pj.inverse!.definition
                 }
                 it("returns nil if asked for a non-existant inverse") {
-                    let forwardPJ = try! Projection(projString: "+proj=airy")
+                    let forwardPJ = try! Projection(projString: "proj=airy a=6378137")
                     expect(forwardPJ.hasInverse).to(beFalse())
                     expect(forwardPJ.inverse).to(beNil())
                 }
