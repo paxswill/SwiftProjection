@@ -6,13 +6,11 @@
 //  Copyright © 2018 Will Ross. All rights reserved.
 //
 
-// include internal PROJ api to get MAX_PATH_FILENAME.
-// It also must be included before proj_api.h
-#include "projects.h"
 #include "bundle-reader.h"
 #include <CoreFoundation/CoreFoundation.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <limits.h>
 
 static projFileAPI bundle_file_api = {
 	bundle_file_open,
@@ -68,12 +66,12 @@ PAFile bundle_file_open(projCtx ctx, const char *filename, const char *access) {
 		goto filenameCleanup;
 	}
 
-	path = malloc(MAX_PATH_FILENAME + 1);
+	path = malloc(PATH_MAX + 1);
 	if (path == NULL) {
 		goto urlCleanup;
 	}
 
-	if (!CFURLGetFileSystemRepresentation(fileURL, true, (UInt8 *)path, MAX_PATH_FILENAME + 1)) {
+	if (!CFURLGetFileSystemRepresentation(fileURL, true, (UInt8 *)path, PATH_MAX + 1)) {
 		goto pathCleanup;
 	}
 
