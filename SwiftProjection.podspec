@@ -24,7 +24,7 @@ SwiftProjection is a framework for performing map projections and transformation
     'HEADER_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/proj-src/src/"',
     # the upstream PROJ source has s single 'prototype' that isn't really a
     # prototype in a public header file.
-    'OTHER_CFLAGS' => '-Wno-strict-prototypes -Wno-documentation',
+    'OTHER_CFLAGS' => '-Wno-strict-prototypes -Wno-documentation -Wno-comma -Wno-shorten-64-to-32 -Wno-#warnings',
   }
 
   s.module_name = 'SwiftProjection'
