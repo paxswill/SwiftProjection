@@ -42,7 +42,7 @@ PAFile bundle_file_open(projCtx ctx, const char *filename, const char *access) {
 	// If we reach here, it means we're assuming filename is the name of a file
 	// in the bundle resources.
     // This identifier is just for use until support for custom identifiers is added to CocoaPods. see CocoaPods#3032
-	projBundle = CFBundleGetBundleWithIdentifier(CFSTR("org.cocoapods.Proj"));
+	projBundle = CFBundleGetBundleWithIdentifier(CFSTR("org.cocoapods.SwiftProjection"));
 	if (projBundle == NULL) {
 		goto noCleanup;
 	}
