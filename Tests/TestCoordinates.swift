@@ -9,7 +9,7 @@
 import Quick
 import Nimble
 import CoreLocation
-@testable import Proj
+@testable import SwiftProjection
 
 class CoordinatesSpec: QuickSpec {
     override func spec() {

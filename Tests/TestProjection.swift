@@ -8,7 +8,7 @@
 import Quick
 import Nimble
 import CoreLocation
-@testable import Proj
+@testable import SwiftProjection
 
 class ProjectionSpec: QuickSpec {
     override func spec() {

@@ -1,6 +1,6 @@
 use_frameworks!
 target 'Proj.Swift_Tests' do
-  pod 'Proj.Swift', :path => '../', :testspecs => ['Tests']
+  pod 'SwiftProjection', :path => '../', :testspecs => ['Tests']
   
   pod 'Quick', '~> 1.2.0'
     pod 'Nimble', '~> 7.0.2'

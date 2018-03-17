@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'Proj.Swift'
+  s.name             = 'SwiftProjection'
   s.version          = '0.1.0'
   s.summary          = 'Use the PROJ library in Swift easily'
 
@@ -21,10 +21,10 @@ Pod::Spec.new do |s|
 This library provides a way to use the PROJ projection library easily in Swift.
                        DESC
 
-  s.homepage         = 'https://github.com/paxswill/Proj.Swift'
+  s.homepage         = 'https://github.com/paxswill/SwiftProjection'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'paxswill' => 'paxswill@paxswill.com' }
-  s.source           = { :git => 'https://github.com/paxswill/Proj.Swift.git',
+  s.source           = { :git => 'https://github.com/paxswill/SwiftProjection.git',
                          :tag => s.version.to_s,
                          :submodules => true }
 
@@ -42,9 +42,9 @@ This library provides a way to use the PROJ projection library easily in Swift.
     'OTHER_CFLAGS' => '-Wno-strict-prototypes -Wno-documentation',
   }
 
-  s.module_name = 'Proj'
+  s.module_name = 'SwiftProjection'
   s.source_files = [
-    'Proj.Swift/Classes/*',
+    'Classes/*',
     'proj-src/src/pj_*.{h,c}', 'proj-src/src/PJ_*.{h,c}',
     'proj-src/src/proj_*.{h,c}', 'proj-src/src/proj.h',
     'proj-src/src/projects.h',
@@ -59,7 +59,7 @@ This library provides a way to use the PROJ projection library easily in Swift.
   s.public_header_files = [
     'proj-src/src/proj.h',
     'proj-src/src/proj_api.h',
-    'Proj.Swift/Classes/bundle-reader.h',
+    'Classes/bundle-reader.h',
   ]
   s.private_header_files = [
     'proj-src/src/projects.h',
@@ -94,7 +94,7 @@ This library provides a way to use the PROJ projection library easily in Swift.
   s.dependency 'Nimble', '~> 7.0.2'
 
   s.test_spec 'Tests' do |t|
-    t.source_files = 'Proj.Swift/Tests/*'
+    t.source_files = 'Tests/*'
     t.dependency 'Quick', '~> 1.2.0'
     t.dependency 'Nimble', '~> 7.0.2'
   end
