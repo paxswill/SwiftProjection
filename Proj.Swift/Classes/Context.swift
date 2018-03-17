@@ -15,9 +15,19 @@ internal class ProjectionContext {
     // Wrapping the context in a Swift class to get memory management
     internal let context: OpaquePointer
 
+    public var currentError: ProjSwiftError? {
+        let errorNumber = proj_context_errno(context)
+        guard errorNumber != 0 else {
+            return nil
+        }
+        return ProjSwiftError.LibraryError(code: errorNumber)
+    }
+
     init() {
         context = proj_context_create()
         pj_ctx_set_fileapi(context, get_bundle_fileapi())
+        // Not checking for errors here, as if this is throwing error, we have larger problems
+        // TODO: Add logging for errors here
     }
 
     deinit {

@@ -20,7 +20,12 @@ public class Projection: CustomDebugStringConvertible  {
         }
         if _inverse == nil {
             let isForward = defaultDirection == PJ_FWD
-            _inverse = Projection(projection: self, defaultForward: !isForward)
+            do {
+                _inverse = try Projection(projection: self, defaultForward: !isForward)
+            } catch {
+                // if inverse returned nil, check currentError()
+                return nil
+            }
         }
         return _inverse
     }
@@ -64,6 +69,15 @@ public class Projection: CustomDebugStringConvertible  {
         return definition
     }
 
+    public var currentError: ProjSwiftError? {
+        // Do _not_ change the current context for the projection, it's already been set by whatever caused the error.
+        let errorNumber = proj_errno(projection)
+        guard errorNumber != 0 else {
+            return nil
+        }
+        return ProjSwiftError.LibraryError(code: errorNumber)
+    }
+
     // MARK: - Pipeline introspection
 
     internal var isPipeline: Bool {
@@ -95,6 +109,9 @@ public class Projection: CustomDebugStringConvertible  {
     }
 
     internal var pipelineGlobals: String {
+        guard isPipeline else {
+            return definition
+        }
         return pipeline[0]
     }
 
@@ -105,41 +122,56 @@ public class Projection: CustomDebugStringConvertible  {
         return Array(pipeline.suffix(from: 1))
     }
 
-    private init(projString: String, defaultForward: Bool) {
-        projection = proj_create(projContext.inner.value.context, projString)
+    // MARK: - Initializers
+
+    private init(projString: String, defaultForward: Bool) throws {
+        let context = projContext.inner.value
         self.defaultDirection = defaultForward ? PJ_FWD : PJ_INV
+        if let pj = proj_create(context.context, projString) {
+            projection = pj
+        } else {
+            // There's an error, projection initialization failed.
+            throw context.currentError!
+        }
     }
 
-    public convenience init(projString: String) {
-        self.init(projString: projString, defaultForward: true)
+    public convenience init(projString: String) throws {
+        try self.init(projString: projString, defaultForward: true)
     }
 
-    public convenience init(identifier: String) {
-        self.init(projString: "+init=\(identifier)")
+    public convenience init(identifier: String) throws {
+        try self.init(projString: "+init=\(identifier)")
     }
 
-    private convenience init(projection: Projection, defaultForward: Bool) {
-        self.init(projString: projection.definition, defaultForward: defaultForward)
+    private convenience init(projection: Projection, defaultForward: Bool) throws {
+        try self.init(projString: projection.definition, defaultForward: defaultForward)
     }
 
     deinit {
         proj_destroy(projection)
     }
 
-    private func transform(_ convertibleCoordinate: ConvertibleCoordinate, direction: PJ_DIRECTION) -> ProjectionCoordinate {
+    // MARK: - Transforms
+
+    private func transform(_ convertibleCoordinate: ConvertibleCoordinate, direction: PJ_DIRECTION) throws -> ProjectionCoordinate {
         // Set the context for the PJ at the beginning of every function in case we're running in a different thread
         pj_set_ctx(projection, projContext.inner.value.context)
         let coordinate = convertibleCoordinate.getCoordinate()
         let projCoordinate = coordinate.getProjCoordinate()
         let transformed = proj_trans(projection, direction, projCoordinate)
+        if let error = currentError {
+            throw error
+        }
         return ProjectionCoordinate(transformed)
     }
 
-    public func transform(_ convertibleCoordinate: ConvertibleCoordinate) -> ProjectionCoordinate {
-        return self.transform(convertibleCoordinate, direction: defaultDirection)
+    public func transform(_ convertibleCoordinate: ConvertibleCoordinate) throws -> ProjectionCoordinate {
+        return try self.transform(convertibleCoordinate, direction: defaultDirection)
     }
 
-    public func asPipeline() -> Projection {
+    // MARK: - Constructing Pipelines
+
+    public func asPipeline() throws -> Projection {
         if isPipeline {
             return self
         }
@@ -147,18 +179,18 @@ public class Projection: CustomDebugStringConvertible  {
         if defaultDirection == PJ_INV {
             pipelineDefinition.append(" inv")
         }
-        return Projection(projString: pipelineDefinition)
+        return try Projection(projString: pipelineDefinition)
     }
 
-    public func appendStep(projString: String) -> Projection {
+    public func appendStep(projString: String) throws -> Projection {
         guard isPipeline else {
-            return asPipeline().appendStep(projString: projString)
+            return try asPipeline().appendStep(projString: projString)
         }
         let newDefinition = "\(definition) step \(projString)"
-        return Projection(projString: newDefinition)
+        return try Projection(projString: newDefinition)
     }
 
-    public func appendStep(projection: Projection) -> Projection {
-        return self.appendStep(projString: projection.definition)
+    public func appendStep(projection: Projection) throws -> Projection {
+        return try self.appendStep(projString: projection.definition)
     }
 }
