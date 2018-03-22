@@ -14,7 +14,7 @@
     <a title="Projection Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftProjection Docs</a> (66% documented)</p>
+        <p><a href="../index.html">SwiftProjection Docs</a> (87% documented)</p>
         <p class="header-right"><a href="https://github.com/paxswill/SwiftProjection"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -459,9 +459,9 @@ example: <code>epsg:3857</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15SwiftProjection0B0C9transformAA0B10CoordinateVAA011ConvertibleD0_pKF"></a>
-                    <a name="//apple_ref/swift/Method/transform(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15SwiftProjection0B0C9transformAA0B10CoordinateVAA011ConvertibleD0_pKF">transform(_:)</a>
+                    <a name="/s:15SwiftProjection0B0C9transformAA0B10CoordinateVAA011ConvertibleD0_p10coordinate_tKF"></a>
+                    <a name="//apple_ref/swift/Method/transform(coordinate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15SwiftProjection0B0C9transformAA0B10CoordinateVAA011ConvertibleD0_p10coordinate_tKF">transform(coordinate:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -469,16 +469,101 @@ example: <code>epsg:3857</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Transform a single coordinate with this projection.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library.
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">_</span> <span class="nv">convertibleCoordinate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ConvertibleCoordinate.html">ConvertibleCoordinate</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ProjectionCoordinate.html">ProjectionCoordinate</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">coordinate</span> <span class="nv">convertibleCoordinate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ConvertibleCoordinate.html">ConvertibleCoordinate</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ProjectionCoordinate.html">ProjectionCoordinate</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>coordinate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The coordinate to transform.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/ProjectionCoordinate.html">ProjectionCoordinate</a></code> with the new coordinates.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15SwiftProjection0B0C9transformSayAA0B10CoordinateVGs11AnySequenceVyAA011ConvertibleD0_pG11coordinates_tKF"></a>
+                    <a name="//apple_ref/swift/Method/transform(coordinates:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15SwiftProjection0B0C9transformSayAA0B10CoordinateVGs11AnySequenceVyAA011ConvertibleD0_pG11coordinates_tKF">transform(coordinates:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Transform multiple coordinates with this projection. Currently this method does a fairly naive map of the given
+coordinates with <code><a href="../Classes/Projection.html#/s:15SwiftProjection0B0C9transformAA0B10CoordinateVAA011ConvertibleD0_p10coordinate_tKF">transform(coordinate:)</a></code>, but there&rsquo;s an opportunity for possible speedups later on by using
+<code>proj_trans_array</code> or <code>proj_trans_generic</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="nv">coordinates</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/ConvertibleCoordinate.html">ConvertibleCoordinate</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/ProjectionCoordinate.html">ProjectionCoordinate</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>coordinates</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A sequence of <code><a href="../Protocols/ConvertibleCoordinate.html">ConvertibleCoordinate</a></code>s.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of <code><a href="../Structs/ProjectionCoordinate.html">ProjectionCoordinate</a></code>s with the new coordinates.</p>
                       </div>
                     </section>
                   </div>
@@ -507,7 +592,13 @@ example: <code>epsg:3857</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Converts a normal <code>Projection</code> into a pipeline projection with a single step.
+If this instance is already a pipeline, this method returns <code>self</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -517,6 +608,10 @@ example: <code>epsg:3857</code>.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asPipeline</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Projection</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>Projection</code> that uses a <a href="http://proj4.org/operations/pipeline.html">pipeline</a>.</p>
                       </div>
                     </section>
                   </div>
@@ -534,7 +629,16 @@ example: <code>epsg:3857</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Append a step given as a PROJ definition to a pipeline operation.</p>
+
+<p>If this instance is not a pipeline already, a new one that is a pipeline will be created and returned.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library. An example of this is if
+you try to add a pipeline within a pipeline. This is currently unsupported (see
+<a href="http://proj4.org/operations/pipeline.html">Rules for Pipelines</a>).
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -544,6 +648,29 @@ example: <code>epsg:3857</code>.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">appendStep</span><span class="p">(</span><span class="nv">projString</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Projection</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>projString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The definition of a step without the <code>step</code> parameter. The <code>inv</code> parameter <em>is</em> allowed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code>Projection</code> instance with the existing steps and the new step.</p>
                       </div>
                     </section>
                   </div>
@@ -561,7 +688,16 @@ example: <code>epsg:3857</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Append an existing <code>Projection</code> as a step to a pipeline operation.</p>
+
+<p>If this instance is not a pipeline already, a new one that is a pipeline will be created and returned.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library. An example of this is if
+you try to add a pipeline within a pipeline. This is currently unsupported (see
+<a href="http://proj4.org/operations/pipeline.html">Rules for Pipelines</a>).
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -571,6 +707,29 @@ example: <code>epsg:3857</code>.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">appendStep</span><span class="p">(</span><span class="nv">projection</span><span class="p">:</span> <span class="kt">Projection</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Projection</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>projString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The definition of a step without the <code>step</code> parameter. The <code>inv</code> parameter <em>is</em> allowed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code>Projection</code> instance with the existing steps and the new step.</p>
                       </div>
                     </section>
                   </div>

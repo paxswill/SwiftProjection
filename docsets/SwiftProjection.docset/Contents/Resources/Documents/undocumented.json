@@ -58,56 +58,56 @@
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 218,
+      "line": 220,
       "symbol": "Projection.transform(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 218,
+      "line": 220,
       "symbol": "Projection.transform(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 224,
+      "line": 226,
       "symbol": "Projection.asPipeline()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 224,
+      "line": 226,
       "symbol": "Projection.asPipeline()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 235,
+      "line": 237,
       "symbol": "Projection.appendStep(projString:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 235,
+      "line": 237,
       "symbol": "Projection.appendStep(projString:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 243,
+      "line": 245,
       "symbol": "Projection.appendStep(projection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/paxswill/Development/Swift/Proj.Swift/Classes/Projection.swift",
-      "line": 243,
+      "line": 245,
       "symbol": "Projection.appendStep(projection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
