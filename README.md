@@ -1,9 +1,9 @@
-# Proj.Swift
+# SwiftProjection
 
-[![CI Status](http://img.shields.io/travis/paxswill/Proj.Swift.svg?style=flat)](https://travis-ci.org/paxswill/Proj.Swift)
-[![Version](https://img.shields.io/cocoapods/v/Proj.Swift.svg?style=flat)](http://cocoapods.org/pods/Proj.Swift)
-[![License](https://img.shields.io/cocoapods/l/Proj.Swift.svg?style=flat)](http://cocoapods.org/pods/Proj.Swift)
-[![Platform](https://img.shields.io/cocoapods/p/Proj.Swift.svg?style=flat)](http://cocoapods.org/pods/Proj.Swift)
+[![CI Status](http://img.shields.io/travis/paxswill/SwiftProjection.svg?style=flat)](https://travis-ci.org/paxswill/SwiftProjection)
+[![Version](https://img.shields.io/cocoapods/v/SwiftProjection.svg?style=flat)](http://cocoapods.org/pods/SwiftProjection)
+[![License](https://img.shields.io/cocoapods/l/SwiftProjection.svg?style=flat)](http://cocoapods.org/pods/SwiftProjection)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftProjection.svg?style=flat)](http://cocoapods.org/pods/SwiftProjection)
 
 ## Example
 
@@ -13,11 +13,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-Proj.Swift is available through [CocoaPods](http://cocoapods.org). To install
+SwiftProjection is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Proj.Swift'
+pod 'SwiftProjection'
 ```
 
 ## Author
@@ -26,4 +26,4 @@ Will Ross, paxswill@paxswill.com
 
 ## License
 
-Proj.Swift is available under the MIT license. See the LICENSE file for more info.
+SwiftProjection is available under the MIT license. See the LICENSE file for more info.
