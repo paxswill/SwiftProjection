@@ -10,35 +10,22 @@ import Foundation
 
 public class Projection: CustomDebugStringConvertible  {
     private let projection: OpaquePointer
-    private var _info: PJ_PROJ_INFO? = nil
-    private let defaultDirection: PJ_DIRECTION
-    private var _inverse: Projection? = nil
+    private lazy var info: PJ_PROJ_INFO = {
+        self.updateContext()
+        return proj_pj_info(self.projection)
+    }()
 
-    public var inverse: Projection? {
+    private let defaultDirection: PJ_DIRECTION
+
+    public lazy var inverse: Projection? = {
         guard hasInverse else {
             return nil
         }
-        if _inverse == nil {
-            let isForward = defaultDirection == PJ_FWD
-            do {
-                _inverse = try Projection(projection: self, defaultForward: !isForward)
-            } catch {
-                // if inverse returned nil, check currentError()
-                return nil
-            }
-        }
-        return _inverse
-    }
+        let isForward = defaultDirection == PJ_FWD
+        return try? Projection(projection: self, isForward: !isForward)
+    }()
 
     // MARK: - Projection Info
-
-    private var info: PJ_PROJ_INFO {
-        if _info == nil {
-            updateContext()
-            _info = proj_pj_info(projection)
-        }
-        return _info!
-    }
 
     public var id: String {
         return String(utf8String: info.id)!
