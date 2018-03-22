@@ -16,6 +16,7 @@
       <div class="content-wrapper">
         <p><a href="../index.html">SwiftProjection Docs</a> (87% documented)</p>
         <p class="header-right"><a href="https://github.com/paxswill/SwiftProjection"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fpaxswill%2Fcom%2Fdocsets%2FSwiftProjection%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -470,6 +471,11 @@ example: <code>epsg:3857</code>.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Transform a single coordinate with this projection.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="http://proj4.org/development/reference/functions.html#coordinate-transformation">PROJ: Coordinate Transformation</a>
+
+</div>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library.
@@ -527,6 +533,11 @@ example: <code>epsg:3857</code>.</p>
                         <p>Transform multiple coordinates with this projection. Currently this method does a fairly naive map of the given
 coordinates with <code><a href="../Classes/Projection.html#/s:15SwiftProjection0B0C9transformAA0B10CoordinateVAA011ConvertibleD0_p10coordinate_tKF">transform(coordinate:)</a></code>, but there&rsquo;s an opportunity for possible speedups later on by using
 <code>proj_trans_array</code> or <code>proj_trans_generic</code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="http://proj4.org/development/reference/functions.html#coordinate-transformation">PROJ: Coordinate Transformation</a>
+
+</div>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library.
@@ -594,6 +605,11 @@ coordinates with <code><a href="../Classes/Projection.html#/s:15SwiftProjection0
                       <div class="abstract">
                         <p>Converts a normal <code>Projection</code> into a pipeline projection with a single step.
 If this instance is already a pipeline, this method returns <code>self</code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="http://proj4.org/operations/pipeline.html">PROJ: The pipeline operator</a>
+
+</div>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library.
@@ -632,6 +648,11 @@ If this instance is already a pipeline, this method returns <code>self</code>.</
                         <p>Append a step given as a PROJ definition to a pipeline operation.</p>
 
 <p>If this instance is not a pipeline already, a new one that is a pipeline will be created and returned.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="http://proj4.org/operations/pipeline.html">PROJ: The pipeline operator</a>
+
+</div>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library. An example of this is if
@@ -691,6 +712,11 @@ you try to add a pipeline within a pipeline. This is currently unsupported (see
                         <p>Append an existing <code>Projection</code> as a step to a pipeline operation.</p>
 
 <p>If this instance is not a pipeline already, a new one that is a pipeline will be created and returned.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="http://proj4.org/operations/pipeline.html">PROJ: The pipeline operator</a>
+
+</div>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     a <code><a href="../Enums/ProjectionError.html#/s:15SwiftProjection0B5ErrorO07LibraryC0ACs5Int32V4code_tcACmF">ProjectionError.LibraryError</a></code> when there&rsquo;s an error within the PROJ library. An example of this is if
