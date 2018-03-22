@@ -61,11 +61,11 @@ class ProjectionSpec: QuickSpec {
                     expect(output.v) ≈ projected.v
                 }
                 it("can use the transform() method") {
-                    let output = try! pj.transform(geodetic)
+                    let output = try! pj.transform(coordinate: geodetic)
                     expectProjected(output)
                 }
                 it("can be inverted") {
-                    let output = try! (pj.inverse!).transform(projected)
+                    let output = try! (pj.inverse!).transform(coordinate: projected)
                     expectGeodetic(output)
                     // The definition is the same, just the direction is different
                     expect(pj.definition) == pj.inverse!.definition
