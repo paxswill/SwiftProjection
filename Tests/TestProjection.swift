@@ -30,21 +30,21 @@ class ProjectionSpec: QuickSpec {
                     expect(pj.definition).to(equal(canonical))
                 }
                 it("throws when the init file can't be found") {
-                    expect { try Projection(identifier: "fooBar:1234") }.to(throwError(errorType: ProjSwiftError.self))
+                    expect { try Projection(identifier: "fooBar:1234") }.to(throwError(errorType: ProjectionError.self))
                 }
                 it("throws when the init file doesn't have the ID") {
                     // Using the bogus ID for EPSG:3857 form before it was standardized
-                    expect { try Projection(identifier: "epsg:900913") }.to(throwError(errorType: ProjSwiftError.self))
+                    expect { try Projection(identifier: "epsg:900913") }.to(throwError(errorType: ProjectionError.self))
                 }
                 it("throws when using a malformed indentifier") {
-                    expect { try Projection(identifier: "epsg") }.to(throwError(errorType: ProjSwiftError.self))
+                    expect { try Projection(identifier: "epsg") }.to(throwError(errorType: ProjectionError.self))
                 }
             }
             it("throws an error when given a bad proj string") {
-                expect { try Projection(projString: "proj=pipeline") }.to(throwError(errorType: ProjSwiftError.self))
+                expect { try Projection(projString: "proj=pipeline") }.to(throwError(errorType: ProjectionError.self))
                 // -24 is the constant for PJD_ERR_LAT_TS_LARGER_THAN_90 in projects.h (yes, peeking in the private API)
                 expect { try Projection(projString: "proj=merc lat_ts=100") }.to(throwError(
-                    ProjSwiftError.LibraryError(code: -24)))
+                    ProjectionError.LibraryError(code: -24)))
             }
             context("transforms coordinates") {
                 let pj = try! Projection(projString: "+proj=merc +lat_ts=56.5 +ellps=GRS80")
@@ -142,7 +142,7 @@ class ProjectionSpec: QuickSpec {
                             // This is not set in stone, there are ways around this. They're not done, but possible
                             // Again, peeking into projects.h for the definition of PJD_ERR_MALFORMED_PIPELINE
                             expect { try complexPipeline.appendStep(projection: pipelinePJ) }.to(
-                                throwError(ProjSwiftError.LibraryError(code: -50)))
+                                throwError(ProjectionError.LibraryError(code: -50)))
                         }
                     }
                 }

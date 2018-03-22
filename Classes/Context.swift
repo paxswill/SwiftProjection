@@ -15,12 +15,12 @@ internal class ProjectionContext {
     // Wrapping the context in a Swift class to get memory management
     internal let context: OpaquePointer
 
-    public var currentError: ProjSwiftError? {
+    public var currentError: ProjectionError? {
         let errorNumber = proj_context_errno(context)
         guard errorNumber != 0 else {
             return nil
         }
-        return ProjSwiftError.LibraryError(code: errorNumber)
+        return ProjectionError.LibraryError(code: errorNumber)
     }
 
     init() {

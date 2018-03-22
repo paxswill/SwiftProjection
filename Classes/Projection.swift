@@ -69,13 +69,13 @@ public class Projection: CustomDebugStringConvertible  {
         return definition
     }
 
-    public var currentError: ProjSwiftError? {
+    public var currentError: ProjectionError? {
         // Do _not_ change the current context for the projection, it's already been set by whatever caused the error.
         let errorNumber = proj_errno(projection)
         guard errorNumber != 0 else {
             return nil
         }
-        return ProjSwiftError.LibraryError(code: errorNumber)
+        return ProjectionError.LibraryError(code: errorNumber)
     }
 
     // MARK: - Pipeline introspection

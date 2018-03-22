@@ -5,7 +5,7 @@
 //  Created by Will Ross on 3/16/18.
 //
 
-public enum ProjSwiftError: Error, CustomStringConvertible {
+public enum ProjectionError: Error, CustomStringConvertible {
     case LibraryError(code: Int32)
 
     public var description: String {
