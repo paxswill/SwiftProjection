@@ -39,7 +39,7 @@ SwiftProjection is a framework for performing map projections and transformation
     'proj-src/src/mk_cheby.c', 'proj-src/src/vector1.c',
     'proj-src/src/biveval.c',
     'proj-src/src/nad_*', 'proj-src/src/emess.{h,c}',
-    'proj-src/src/geocent.{h,c}', 'proj-src/src/geodesic.c',
+    'proj-src/src/geocent.{h,c}', 'proj-src/src/geodesic.{h,c}',
   ]
   s.public_header_files = [
     'proj-src/src/proj.h',
