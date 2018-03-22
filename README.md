@@ -22,7 +22,7 @@ pod 'Proj.Swift'
 
 ## Author
 
-paxswill, paxswill@paxswill.com
+Will Ross, paxswill@paxswill.com
 
 ## License
 

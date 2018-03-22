@@ -8,7 +8,7 @@ SwiftProjection is a framework for performing map projections and transformation
 
   s.homepage         = 'https://github.com/paxswill/SwiftProjection'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'paxswill' => 'paxswill@paxswill.com' }
+  s.author           = { 'Will Ross' => 'paxswill@paxswill.com' }
   s.source           = { :git => 'https://github.com/paxswill/SwiftProjection.git',
                          :tag => s.version.to_s,
                          :submodules => true }
