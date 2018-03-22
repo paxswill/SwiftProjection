@@ -1,6 +1,7 @@
 podspec: SwiftProjection.podspec
 sdk: iphoneos
 swift_version: '4.1'
+root_url: http://paxswill/com/SwiftProjection
 author: Will Ross
 author_url: http://paxswill.com
 github_url: https://github.com/paxswill/SwiftProjection
