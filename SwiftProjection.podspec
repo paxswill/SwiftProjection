@@ -12,6 +12,7 @@ SwiftProjection is a framework for performing map projections and transformation
   s.source           = { :git => 'https://github.com/paxswill/SwiftProjection.git',
                          :tag => "v#{s.version.to_s}",
                          :submodules => true }
+  s.cocoapods_version = '>= 1.5.0.beta.1'
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
@@ -74,9 +75,6 @@ SwiftProjection is a framework for performing map projections and transformation
 
   s.libraries = 'pthread'
   s.dependency 'Threadly', '~> 2.0.1'
-  # A non-ideal workaround for CocoaPods#7498, can be removed once CocoaPods 1.5.0 is released
-  s.dependency 'Quick', '~> 1.2.0'
-  s.dependency 'Nimble', '~> 7.0.2'
 
   s.test_spec 'Tests' do |t|
     t.source_files = 'Tests/*'
