@@ -14,7 +14,7 @@ SwiftProjection is a framework for performing map projections and transformation
                          :submodules => true }
   s.cocoapods_version = '>= 1.5.0.beta.1'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.10'
   s.swift_version = '4.1'
 
