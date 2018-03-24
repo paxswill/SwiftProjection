@@ -13,3 +13,8 @@ before_install:
 script:
   #- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Proj.Swift.xcworkspace -scheme SwiftProjection -sdk iphonesimulator11.3 -destination "platform=iOS Simulator,OS=9.0,name=iPhone 6" ONLY_ACTIVE_ARCH=NO | xcpretty
   - set -o pipefail && pod lib lint --verbose | xcpretty
+deploy:
+  provider: script
+  script: scrips/trunk_push.sh
+  on:
+    tags: true
