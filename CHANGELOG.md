@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [1.0.4] - 2018-03-24
 ### Added
 * `inputIsAngular` and `outputIsAngular` properties on `Projection`, exposing
   the output of `proj_angular_input` and `proj_angular_output` respectively.

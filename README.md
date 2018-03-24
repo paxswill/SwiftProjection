@@ -24,7 +24,7 @@ SwiftProjection is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'SwiftProjection', '~> 1.0.3'
+pod 'SwiftProjection', '~> 1.0.4'
 ```
 
 ## Author
