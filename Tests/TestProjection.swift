@@ -21,6 +21,18 @@ class ProjectionSpec: QuickSpec {
                 expect(pj.definition).to(equal(canonical))
                 // This also exercises bundle-reader (to read the defaults file), but doesn't fail if it doesn't work.
             }
+            it("can tell if the input is angular") {
+                let projString = "+proj=merc +lat_ts=56.5 +ellps=GRS80"
+                let pj = try! Projection(projString: projString)
+                expect(pj.inputIsAngular).to(beTrue())
+                expect(pj.inverse!.outputIsAngular).to(beTrue())
+            }
+            it("can tell if the output is angular") {
+                let projString = "+proj=merc +lat_ts=56.5 +ellps=GRS80"
+                let pj = try! Projection(projString: projString)
+                expect(pj.outputIsAngular).to(beFalse())
+                expect(pj.inverse!.inputIsAngular).to(beFalse())
+            }
             context("when using an init file") {
                 it("can be created from a well known identitifer") {
                     // This is indirectly testing the bundle-reader functionality

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+### Added
+* `inputIsAngular` and `outputIsAngular` properties on `Projection`, exposing
+  the output of `proj_angular_input` and `proj_angular_output` respectively.
+
 ## [1.0.3] - 2018-03-24
 ### Added
 * `longitude` and `latitude` properties on `ProjectionCoordinate`

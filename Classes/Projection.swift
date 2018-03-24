@@ -65,6 +65,18 @@ public class Projection: CustomDebugStringConvertible {
         return info.accuracy
     }
 
+    /// True if the input is supposed to be angular (for example, converting from geodetic to cartesian coordinates).
+    public lazy var inputIsAngular: Bool = {
+        self.updateContext()
+        return proj_angular_input(projection, transformDirection) == 1
+    }()
+
+    /// True if the output is supposed to be angular (for example, converting from cartesian to geodetic coordinates).
+    public lazy var outputIsAngular: Bool = {
+        self.updateContext()
+        return proj_angular_output(projection, transformDirection) == 1
+    }()
+
     // MARK: - Debugging and Errors
 
     public var debugDescription: String {
