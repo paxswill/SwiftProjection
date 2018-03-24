@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftProjection'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Easy map projections in Swift'
   s.description      = <<-DESC
 SwiftProjection is a framework for performing map projections and transformations in Swift using the PROJ library.
