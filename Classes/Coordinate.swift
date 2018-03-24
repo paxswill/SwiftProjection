@@ -33,6 +33,30 @@ public struct ProjectionCoordinate: ConvertibleCoordinate, Equatable {
     public var t: Double
 
     /**
+     Property that translates between latitude in decimal degrees and `v` in radians.
+     */
+    public var latitude: Double {
+        get {
+            return proj_todeg(v)
+        }
+        set {
+            v = proj_torad(newValue)
+        }
+    }
+
+    /**
+     Property that translates between longitude in decimal degrees and `u` in radians.
+     */
+    public var longitude: Double {
+        get {
+            return proj_todeg(u)
+        }
+        set {
+            u = proj_torad(newValue)
+        }
+    }
+
+    /**
      Create a coordinate. The components are multi-use in some cases (particularly `u` and `v`) and may depend on the
      context.
 
@@ -93,6 +117,14 @@ public struct ProjectionCoordinate: ConvertibleCoordinate, Equatable {
      */
     internal func getProjCoordinate() -> PJ_COORD {
         return proj_coord(u, v, w, t)
+    }
+
+    /**
+     Converts the horizontal components of this coordinate to a `CLLocationCoordinate2D`.
+     - Returns: A `CLLocationCoordinate2D` with this coordinate's latitude and longitude.
+     */
+    public func asCLLocationCoordinate2D() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(latitude, longitude)
     }
 }
 

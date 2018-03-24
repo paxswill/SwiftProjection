@@ -1,9 +1,13 @@
 # Changelog
 
+## Unreleased
+### Added
+* `longitude` and `latitude` properties on `ProjectionCoordinate`
+* `asCLLocationCoordinate2D()` function on `ProjectionCoordinate` to ease usage
+  with other APIs.
+
 ## [1.0.2] - 2018-03-24
-
 ### Changes
-
 * Minimum iOS version raised to 9.0, mainly because the test suite is failing
   to run on 8.0.
 * Quick and Nimble have been removed from the base spec requirements. They're
@@ -12,7 +16,6 @@ work with `pod lib lint` on CocoaPods <= 1.4.0.
 
 ## [1.0.1] - 2018-03-22
 ### Fixed
-
 * Tests fixed to use new `transform(coordinate:)` signature.
 
 ## [1.0.0] - 2018-03-22

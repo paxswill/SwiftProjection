@@ -68,6 +68,18 @@ class CoordinatesSpec: QuickSpec {
                 expect(returned.uvwt.w).to(equal(coord.w))
                 expect(returned.uvwt.t).to(equal(coord.t))
             }
+            it("can be converted to a CLLocationCoordinate2D") {
+                coord = ProjectionCoordinate(latitude: 44, longitude: -130.5, altitude: 30, time: 0)
+                let clCoord = coord.asCLLocationCoordinate2D()
+                // Using 'approximately equals' here because there's a few floating point round trips
+                expect(clCoord.latitude) ≈ 44
+                expect(clCoord.longitude) ≈ -130.5
+            }
+            it("can provide access to u and v as lat and lon") {
+                coord = ProjectionCoordinate(latitude: 44, longitude: -130.5, altitude: 30, time: 0)
+                expect(coord.latitude) ≈ 44
+                expect(coord.longitude) ≈ -130.5
+            }
         }
         describe("a CoreLocation coordinate") {
             it("can be converted") {
