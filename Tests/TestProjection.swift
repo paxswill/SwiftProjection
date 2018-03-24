@@ -58,7 +58,7 @@ class ProjectionSpec: QuickSpec {
                 expect { try Projection(projString: "proj=merc lat_ts=100") }.to(throwError(
                     ProjectionError.LibraryError(code: -24)))
             }
-            context("transforms coordinates") {
+            context("when transforming coordinates") {
                 let pj = try! Projection(projString: "+proj=merc +lat_ts=56.5 +ellps=GRS80")
                 // Values generated from the `proj` CLI
                 let geodetic = ProjectionCoordinate(latitude: 44.0, longitude: -130.5)
@@ -88,7 +88,7 @@ class ProjectionSpec: QuickSpec {
                     expect(forwardPJ.inverse).to(beNil())
                 }
             }
-            context("can be a pipeline") {
+            context("when it's a pipeline") {
                 let plainPJ = try! Projection(projString: "+proj=merc +lat_ts=56.5 ellps=GRS80")
                 let pipelinePJ = try! Projection(projString: "+proj=pipeline +step +proj=merc +lat_ts=56.5 + ellps=GRS80")
                 let complexPipeline = try! Projection(projString: "+proj=pipeline +ellps=GRS80 +step +proj=merc +step +proj=axisswap +order=2,1")
@@ -96,7 +96,7 @@ class ProjectionSpec: QuickSpec {
                     expect(plainPJ.isPipeline) == false
                     expect(pipelinePJ.isPipeline) == true
                 }
-                context("can be converted from a plain projection") {
+                context("if being converted from a plain projections") {
                     it("can be a forward transform") {
                         let plainAsPipeline = try! plainPJ.asPipeline()
                         expect(plainAsPipeline.isPipeline) == true
@@ -121,7 +121,7 @@ class ProjectionSpec: QuickSpec {
                 it("can show global settings") {
                     expect(complexPipeline.pipelineGlobals) == "proj=pipeline ellps=GRS80"
                 }
-                context("can build pipelines incrementally") {
+                context("when being built incrementally") {
                     func testAppendString(_ pj: Projection) {
                         let newPipeline = try! pj.appendStep(projString: "proj=axisswap order=2,1")
                         expect(newPipeline.pipelineSteps[0]) == "proj=merc lat_ts=56.5 ellps=GRS80"
