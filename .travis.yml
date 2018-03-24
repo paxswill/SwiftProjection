@@ -15,6 +15,6 @@ script:
   - set -o pipefail && pod lib lint --verbose | xcpretty
 deploy:
   provider: script
-  script: scrips/trunk_push.sh
+  script: scripts/trunk_push.sh
   on:
     tags: true
