@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [1.0.3] - 2018-03-24
 ### Added
 * `longitude` and `latitude` properties on `ProjectionCoordinate`
 * `asCLLocationCoordinate2D()` function on `ProjectionCoordinate` to ease usage
